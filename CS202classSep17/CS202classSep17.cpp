@@ -2,33 +2,65 @@
 //
 
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <fstream>
+
+
 using std::cout;
 using std::cin;
+using std::string;
+using std::getline;
+using std::istringstream;
+using std::ofstream;
+using std::ifstream;
 
 
 int main()
 {
-    std::cout << "HI Like Pie!\n";
+	std::cout << "HI Like Pie!\n";
 
 	int total = 0;
+	bool boingBoing = true;
 
-	while (true)
+
+	while (boingBoing)
 	{
 		int x;
-		cout << "NUMBER!: (negative to quit)";
-		cin >> x;
-		if (!cin)
+		cout << "NUMBERS!: (drop that sucker negative to quit)";
+		string userInput;
+		getline(cin, userInput);
+		istringstream uin(userInput);
+		while (true)
 		{
-			cout << "that wasn't a number! \n";
-			cin.clear();
-			cin.ignore(999, '\n');
-			continue;
+			uin >> x;
+			if (!uin)
+			{
+				if (uin.eof())
+				{
+					break;
+				}
+				cout << "Bad User, No Cookie! \n";
+				uin.clear();
+				uin.ignore(999, '\n');
+				continue;
+			}
+			if (x < 0)
+			{
+				boingBoing = false;
+				break;
+			}
+			total += x;
 		}
-		if (x < 0)
-			break;
-		total += x;
+		cout << "Your total was " << total << "\n";
 	}
-	cout << "Your total was " << total << "\n";
+	ofstream ofile("Repository of Pie.txt", std::ios::app);
+	ofile << total << "<- number of pies.\n";
+	ifstream f("Repository of Pie.txt");
+	if (f.is_open())
+		std::cout << f.rdbuf();
+	return 0;
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
