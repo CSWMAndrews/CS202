@@ -2,10 +2,26 @@
 //
 
 #include <iostream>
+using std::cout;
+using std::cin;
+
 
 int main()
 {
     std::cout << "HI Like Pie!\n";
+
+	int total = 0;
+
+	while (true)
+	{
+		int x;
+		cout << "NUMBER!:";
+		cin >> x;
+		if (x < 0)
+			break;
+		total += x;
+	}
+	cout << "Your total was " << total << "\n";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
