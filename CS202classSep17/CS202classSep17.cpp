@@ -57,6 +57,7 @@ int main()
 	ofstream ofile("Repository of Pie.txt", std::ios::app);
 	ofile << total << "<- number of pies.\n";
 	ifstream f("Repository of Pie.txt");
+
 	if (f.is_open())
 		std::cout << f.rdbuf();
 	return 0;
